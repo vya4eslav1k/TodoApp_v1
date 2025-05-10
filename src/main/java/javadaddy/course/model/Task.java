@@ -1,16 +1,21 @@
 package javadaddy.course.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import javadaddy.course.enums.TaskStatuses;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Setter
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Task {
+    int id;
+    @NonNull
     private String title;
+    @NonNull
     private String description;
+    @NonNull
     private LocalDate dueDate;
+    @NonNull
+    private TaskStatuses status;
 }
