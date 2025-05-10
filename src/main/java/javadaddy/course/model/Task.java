@@ -1,6 +1,6 @@
 package javadaddy.course.model;
 
-import javadaddy.course.enums.TaskStatuses;
+import javadaddy.course.enums.TaskStatus;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -8,6 +8,9 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Task {
     int id;
     @NonNull
@@ -17,5 +20,5 @@ public class Task {
     @NonNull
     private LocalDate dueDate;
     @NonNull
-    private TaskStatuses status;
+    private TaskStatus status;
 }

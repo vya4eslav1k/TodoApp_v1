@@ -2,6 +2,7 @@ package javadaddy.course.service;
 
 import javadaddy.course.model.Task;
 import javadaddy.course.model.TaskHandler;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+@AllArgsConstructor
 public class TaskServiceImpl implements TaskService {
     TaskHandler taskHandler;
 
@@ -24,6 +26,15 @@ public class TaskServiceImpl implements TaskService {
             stream = stream.sorted(comparator);
         }
         return new ArrayList<>(stream.toList());
+    }
+
+    public Task getTaskById(int id) {
+        for (Task task : taskHandler.getTasks()) {
+            if (task.getId() == id) {
+                return new Task(task.getId(), task.getTitle(), task.getDescription(), task.getDueDate(), task.getStatus());
+            }
+        }
+        throw new IllegalArgumentException("Task with id " + id + " does not exist");
     }
 
     @Override
@@ -50,19 +61,21 @@ public class TaskServiceImpl implements TaskService {
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getId() == task.getId()) {
                 tasks.set(i, task);
-                break;
+                return;
             }
         }
     }
 
     @Override
-    public void deleteTask(Task task) {
+    public void deleteTask(int taskId) {
         List<Task> tasks = taskHandler.getTasks();
         for (int i = 0; i < taskHandler.getTasks().size(); i++) {
-            if (tasks.get(i).getId() == task.getId()) {
+            if (tasks.get(i).getId() == taskId) {
                 tasks.remove(i);
-                break;
+                return;
             }
         }
+        throw new IllegalArgumentException("Task with id " + taskId + " does not exist");
     }
+
 }
