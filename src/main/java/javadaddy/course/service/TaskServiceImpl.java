@@ -15,7 +15,7 @@ public class TaskServiceImpl implements TaskService {
     TaskHandler taskHandler;
 
     @Override
-    public List<Task> getAllTasks() {
+    public List<Task> getTasks() {
         Predicate<Task> filter = taskHandler.getFilter();
         Comparator<Task> comparator = taskHandler.getSorter();
         Stream<Task> stream = taskHandler.getTasks().stream();
@@ -77,5 +77,4 @@ public class TaskServiceImpl implements TaskService {
         }
         throw new IllegalArgumentException("Task with id " + taskId + " does not exist");
     }
-
 }

@@ -1,5 +1,8 @@
 package javadaddy.course.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum TaskStatus {
     TODO(1),
     IN_PROGRESS(2),

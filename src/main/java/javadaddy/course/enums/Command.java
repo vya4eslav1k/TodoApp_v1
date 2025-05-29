@@ -7,5 +7,6 @@ public enum Command {
     UPDATE_STATUS,
     DELETE,
     FILTER,
-    SORT
+    SORT,
+    EXIT
 }

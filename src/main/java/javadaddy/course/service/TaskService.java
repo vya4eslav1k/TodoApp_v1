@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public interface TaskService {
-    List<Task> getAllTasks();
+    List<Task> getTasks();
     Task getTaskById(int id);
     void addTask(Task task);
     void sortTasks(Comparator<Task> comparator);
