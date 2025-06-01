@@ -24,7 +24,7 @@ public class TodoApp {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         //for testing
-        TaskServiceUtils.init(taskService);
+        //TaskServiceUtils.init(taskService);
 
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
@@ -34,13 +34,14 @@ public class TodoApp {
                                 Type \'list\' to see all tasks
                                 Type \'add\' to add a new task
                                 Type \'update\' to to update task
+                                Type \'update status\' to to update task
                                 Type \'delete\' to delete task
                                 Type \'filter\' to filter tasks
                                 Type \'exit\' to sort tasks
                                 """);
             try {
                 String command = scanner.nextLine();
-                switch (Command.valueOf(command.toUpperCase())) {
+                switch (Command.getCommandByAlias(command.toUpperCase())) {
                     case LIST -> {
                         System.out.println("Tasks:");
                         for (Task task : taskService.getTasks()) {
