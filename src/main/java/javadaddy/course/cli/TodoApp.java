@@ -42,30 +42,14 @@ public class TodoApp {
             try {
                 String command = scanner.nextLine();
                 switch (Command.getCommandByAlias(command.toUpperCase())) {
-                    case LIST -> {
-                        commandList();
-                    }
-                    case ADD -> {
-                        commandAdd();
-                    }
-                    case UPDATE -> {
-                        commandUpdate();
-                    }
-                    case UPDATE_STATUS -> {
-                        commandUpdateStatus();
-                    }
-                    case DELETE -> {
-                        commandDelete();
-                    }
-                    case FILTER -> {
-                       commandFilter();
-                    }
-                    case SORT -> {
-                        commandSort();
-                    }
-                    case EXIT -> {
-                        commandExit();
-                    }
+                    case LIST -> commandList();
+                    case ADD -> commandAdd();
+                    case UPDATE -> commandUpdate();
+                    case UPDATE_STATUS -> commandUpdateStatus();
+                    case DELETE -> commandDelete();
+                    case FILTER -> commandFilter();
+                    case SORT -> commandSort();
+                    case EXIT -> commandExit();
                 }
             }
             catch (IllegalArgumentException e) {
