@@ -29,12 +29,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public Task getTaskById(int id) {
-        for (Task task : taskHandler.getTasks()) {
-            if (task.getId() == id) {
-                return new Task(task.getId(), task.getTitle(), task.getDescription(), task.getDueDate(), task.getStatus());
-            }
-        }
-        throw new IllegalArgumentException("Task with id " + id + " does not exist");
+        Task task = getTask(id);
+        return new Task(task.getId(), task.getTitle(), task.getDescription(), task.getDueDate(), task.getStatus());
     }
 
     @Override
@@ -57,22 +53,24 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void updateTask(Task task) {
-        List<Task> tasks = taskHandler.getTasks();
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getId() == task.getId()) {
-                tasks.set(i, task);
-                return;
-            }
-        }
+        Task oldTask = getTask(task.getId());
+        oldTask.setTitle(task.getTitle());
+        oldTask.setDescription(task.getDescription());
+        oldTask.setDueDate(task.getDueDate());
+        oldTask.setStatus(task.getStatus());
     }
 
     @Override
     public void deleteTask(int taskId) {
         List<Task> tasks = taskHandler.getTasks();
-        for (int i = 0; i < taskHandler.getTasks().size(); i++) {
-            if (tasks.get(i).getId() == taskId) {
-                tasks.remove(i);
-                return;
+        Task task = getTask(taskId);
+        tasks.remove(task);
+    }
+
+    private Task getTask(int taskId) {
+        for (Task task : taskHandler.getTasks()) {
+            if (task.getId() == taskId) {
+                return task;
             }
         }
         throw new IllegalArgumentException("Task with id " + taskId + " does not exist");

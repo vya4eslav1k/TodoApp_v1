@@ -5,12 +5,10 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Setter
-@Getter
-@RequiredArgsConstructor
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Task {
     int id;
     @NonNull

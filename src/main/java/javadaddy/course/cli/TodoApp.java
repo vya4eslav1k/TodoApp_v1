@@ -24,7 +24,7 @@ public class TodoApp {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         //for testing
-        //TaskServiceUtils.init(taskService);
+        TaskServiceUtils.init(taskService);
 
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
